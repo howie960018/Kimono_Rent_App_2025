@@ -3,9 +3,9 @@ import React from 'react';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
 
 const menuItems = [
-  { id: 1, name: '着物 丸洗い', price: '¥4,400〜', image: 'https://via.placeholder.com/60' },
-  { id: 2, name: '着物 仕立て', price: '¥12,000〜', image: 'https://via.placeholder.com/60' },
-  { id: 3, name: '帯 クリーニング', price: '¥3,300〜', image: 'https://via.placeholder.com/60' },
+  { id: 1, name: '和服 清洗', price: '￥4,400～', image: 'https://via.placeholder.com/60' },
+  { id: 2, name: '和服 裁縫', price: '￥12,000～', image: 'https://via.placeholder.com/60' },
+  { id: 3, name: '腰帶 清洗', price: '￥3,300～', image: 'https://via.placeholder.com/60' },
 ];
 
 export function RecommendedMenu() {

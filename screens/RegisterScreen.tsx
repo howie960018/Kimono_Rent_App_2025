@@ -1,6 +1,9 @@
+import { useAuth } from '@/contexts/AuthContext';
 import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
 import {
+    ActivityIndicator,
+    Alert,
     KeyboardAvoidingView,
     Platform,
     ScrollView,
@@ -8,12 +11,13 @@ import {
     Text,
     TextInput,
     TouchableOpacity,
-    View,
+    View
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 export function RegisterScreen() {
   const router = useRouter();
+  const { register } = useAuth();
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -23,10 +27,48 @@ export function RegisterScreen() {
   });
 
   const [agreedToTerms, setAgreedToTerms] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const handleRegister = () => {
-    // TODO: 實作真實註冊功能
-    console.log('註冊:', formData);
+  const handleRegister = async () => {
+    // 驗證欄位
+    if (!formData.fullName || !formData.email || !formData.phone || !formData.password) {
+      Alert.alert('錯誤', '請填寫所有欄位');
+      return;
+    }
+
+    // 驗證密碼
+    if (formData.password !== formData.confirmPassword) {
+      Alert.alert('錯誤', '密碼不一致');
+      return;
+    }
+
+    if (formData.password.length < 6) {
+      Alert.alert('錯誤', '密碼至少需要 6 個字元');
+      return;
+    }
+
+    if (!agreedToTerms) {
+      Alert.alert('錯誤', '請同意服務條款');
+      return;
+    }
+
+    setLoading(true);
+    const result = await register({
+      fullName: formData.fullName,
+      email: formData.email,
+      phone: formData.phone,
+      password: formData.password,
+      confirmPassword: formData.confirmPassword,
+    });
+    setLoading(false);
+
+    if (result.success) {
+      Alert.alert('成功', '註冊成功！', [
+        { text: '確定', onPress: () => router.back() }
+      ]);
+    } else {
+      Alert.alert('註冊失敗', result.error || '請稍後再試');
+    }
   };
 
   const updateFormData = (field: string, value: string) => {
@@ -129,11 +171,18 @@ export function RegisterScreen() {
             </TouchableOpacity>
 
             <TouchableOpacity
-              style={[styles.registerButton, !agreedToTerms && styles.disabledButton]}
+              style={[
+                styles.registerButton, 
+                (!agreedToTerms || loading) && styles.disabledButton
+              ]}
               onPress={handleRegister}
-              disabled={!agreedToTerms}
+              disabled={!agreedToTerms || loading}
             >
-              <Text style={styles.registerButtonText}>註冊</Text>
+              {loading ? (
+                <ActivityIndicator color="#FFFFFF" />
+              ) : (
+                <Text style={styles.registerButtonText}>註冊</Text>
+              )}
             </TouchableOpacity>
 
             <View style={styles.divider}>

@@ -1,6 +1,9 @@
+import { useAuth } from '@/contexts/AuthContext';
 import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
 import {
+    ActivityIndicator,
+    Alert,
     KeyboardAvoidingView,
     Platform,
     ScrollView,
@@ -8,18 +11,34 @@ import {
     Text,
     TextInput,
     TouchableOpacity,
-    View,
+    View
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 export function LoginScreen() {
   const router = useRouter();
+  const { login } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  const handleLogin = () => {
-    // TODO: 實作真實登入功能
-    console.log('登入:', { email, password });
+  const handleLogin = async () => {
+    if (!email || !password) {
+      Alert.alert('錯誤', '請填寫所有欄位');
+      return;
+    }
+
+    setLoading(true);
+    const result = await login(email, password);
+    setLoading(false);
+
+    if (result.success) {
+      Alert.alert('成功', '登入成功！', [
+        { text: '確定', onPress: () => router.back() }
+      ]);
+    } else {
+      Alert.alert('登入失敗', result.error || '請檢查帳號密碼');
+    }
   };
 
   return (
@@ -75,8 +94,16 @@ export function LoginScreen() {
               <Text style={styles.forgotPasswordText}>忘記密碼？</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
-              <Text style={styles.loginButtonText}>登入</Text>
+            <TouchableOpacity 
+              style={[styles.loginButton, loading && styles.disabledButton]} 
+              onPress={handleLogin}
+              disabled={loading}
+            >
+              {loading ? (
+                <ActivityIndicator color="#FFFFFF" />
+              ) : (
+                <Text style={styles.loginButtonText}>登入</Text>
+              )}
             </TouchableOpacity>
 
             <View style={styles.divider}>
@@ -184,6 +211,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 24,
+  },
+  disabledButton: {
+    backgroundColor: '#D0D0D0',
   },
   loginButtonText: {
     fontSize: 16,

@@ -1,6 +1,8 @@
+import { useAuth } from '@/contexts/AuthContext';
 import { useRouter } from 'expo-router';
-import React, { useState } from 'react';
+import React from 'react';
 import {
+    Alert,
     ScrollView,
     StyleSheet,
     Text,
@@ -11,20 +13,33 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 export function ProfileScreen() {
   const router = useRouter();
-  // 模擬使用者登入狀態
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  
-  // 模擬使用者資料
-  const userInfo = {
-    name: '王小明',
-    email: 'wang.xiaoming@example.com',
-    phone: '0912-345-678',
-    memberLevel: '金牌會員',
-    points: 1250,
+  const { user, isAuthenticated, logout } = useAuth();
+
+  // 處理登出
+  const handleLogout = async () => {
+    Alert.alert(
+      '確認登出',
+      '您確定要登出嗎？',
+      [
+        { text: '取消', style: 'cancel' },
+        {
+          text: '登出',
+          style: 'destructive',
+          onPress: async () => {
+            try {
+              await logout();
+              Alert.alert('成功', '已登出');
+            } catch (error) {
+              Alert.alert('錯誤', '登出失敗');
+            }
+          },
+        },
+      ]
+    );
   };
 
   // 未登入狀態顯示
-  if (!isLoggedIn) {
+  if (!isAuthenticated || !user) {
     return (
       <SafeAreaView style={styles.container}>
         <ScrollView contentContainerStyle={styles.guestScrollContent}>
@@ -86,10 +101,10 @@ export function ProfileScreen() {
             <Text style={styles.avatarText}>👤</Text>
           </View>
           <View style={styles.userInfo}>
-            <Text style={styles.userName}>{userInfo.name}</Text>
-            <Text style={styles.userEmail}>{userInfo.email}</Text>
+            <Text style={styles.userName}>{user.fullName}</Text>
+            <Text style={styles.userEmail}>{user.email}</Text>
             <View style={styles.memberBadge}>
-              <Text style={styles.memberBadgeText}>⭐ {userInfo.memberLevel}</Text>
+              <Text style={styles.memberBadgeText}>⭐ {user.memberLevel || '一般會員'}</Text>
             </View>
           </View>
           <TouchableOpacity
@@ -104,7 +119,7 @@ export function ProfileScreen() {
         <View style={styles.pointsCard}>
           <View style={styles.pointsContent}>
             <Text style={styles.pointsLabel}>我的點數</Text>
-            <Text style={styles.pointsValue}>{userInfo.points}</Text>
+            <Text style={styles.pointsValue}>{user.points || 0}</Text>
           </View>
           <TouchableOpacity style={styles.pointsButton}>
             <Text style={styles.pointsButtonText}>兌換獎勵 →</Text>
@@ -115,7 +130,10 @@ export function ProfileScreen() {
         <View style={styles.menuSection}>
           <Text style={styles.sectionTitle}>我的服務</Text>
           
-          <TouchableOpacity style={styles.menuItem}>
+          <TouchableOpacity 
+            style={styles.menuItem}
+            onPress={() => router.push('/my-bookings' as any)}
+          >
             <Text style={styles.menuIcon}>📅</Text>
             <Text style={styles.menuText}>我的預約</Text>
             <Text style={styles.menuArrow}>›</Text>
@@ -172,7 +190,7 @@ export function ProfileScreen() {
         {/* 登出按鈕 */}
         <TouchableOpacity
           style={styles.logoutButton}
-          onPress={() => setIsLoggedIn(false)}
+          onPress={handleLogout}
         >
           <Text style={styles.logoutButtonText}>登出</Text>
         </TouchableOpacity>

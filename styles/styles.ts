@@ -241,14 +241,6 @@ export const styles = StyleSheet.create({
   socialIcon: {
     fontSize: 24,
   },
-  socialButtonsRow: {
-    flexDirection: 'row',
-    gap: 20,
-  },
-  socialButtonText: {
-    color: '#333333',
-    fontSize: 14,
-  },
   // MapScreen 樣式
   mapScreenContainer: {
     flex: 1,

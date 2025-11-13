@@ -67,11 +67,10 @@ export function MapScreen() {
         />
 
         <View style={styles.shopInfoSection}>
-          <Text style={styles.shopNameJa}>ワギャラリー カワヒラヤ</Text>
-          <Text style={styles.shopNameCh}>和ギャラリー 川平屋</Text>
+          <Text style={styles.shopNameCh}>和韻藝廊 川平屋</Text>
           <Text style={styles.shopDescription}>
-            創業以來、和服の美しさと日本の伝統文化を大切にし、お客様一人ひとりに合わせた丁寧なサービスを提供してまいりました。着物のクリーニング、仕立て、レンタルサービスなど、幅広いニーズにお応えしています。{'\n\n'}
-            経験豊富なスタッフが、着物選びから着付けまで、心を込めてサポートいたします。特別な日の思い出作りを、私たちにお任せください。
+            自創業以來，我們致力於傳承和服之美與日本傳統文化，為每位顧客提供細心周到的服務。從和服清洗、裁縫到租借服務，我們提供全方位的專業支援。{'\n\n'}
+            經驗豐富的專業團隊，從和服挑選到穿著協助，都將用心為您服務。讓我們為您打造難忘的特別時刻。
           </Text>
         </View>
 
@@ -108,7 +107,7 @@ export function MapScreen() {
                 latitude: shopLocation.latitude,
                 longitude: shopLocation.longitude,
               }}
-              title="和ギャラリー 川平屋"
+              title="和韻藝廊 川平屋"
               description={shopAddress}
             />
           </MapView>
@@ -123,21 +122,21 @@ export function MapScreen() {
           <View style={styles.socialIcons}>
             <TouchableOpacity
               style={styles.socialButton}
-              onPress={() => Linking.openURL('https://instagram.com')}
-            >
-              <Text style={styles.socialIcon}>📷</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.socialButton}
-              onPress={() => Linking.openURL('https://facebook.com')}
+              onPress={() => Linking.openURL('https://www.facebook.com')}
             >
               <Text style={styles.socialIcon}>👍</Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.socialButton}
-              onPress={() => Linking.openURL('https://example.com')}
+              onPress={() => Linking.openURL('https://www.instagram.com')}
             >
-              <Text style={styles.socialIcon}>🌐</Text>
+              <Text style={styles.socialIcon}>📷</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.socialButton}
+              onPress={() => Linking.openURL('https://line.me')}
+            >
+              <Text style={styles.socialIcon}>💬</Text>
             </TouchableOpacity>
           </View>
         </View>

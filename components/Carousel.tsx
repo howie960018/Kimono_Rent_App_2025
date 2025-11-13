@@ -5,9 +5,9 @@ import { Dimensions, FlatList, Image, Text, View } from 'react-native';
 const { width } = Dimensions.get('window');
 
 const carouselItems = [
-  { id: 1, title: 'カジュアル着物', image: 'https://picsum.photos/seed/kimono1/400/250' },
-  { id: 2, title: 'フォーマル着物', image: 'https://picsum.photos/seed/kimono2/400/250' },
-  { id: 3, title: '夏の浴衣', image: 'https://picsum.photos/seed/yukata/400/250' },
+  { id: 1, title: '休閒和服', image: 'https://picsum.photos/seed/kimono1/400/250' },
+  { id: 2, title: '正式和服', image: 'https://picsum.photos/seed/kimono2/400/250' },
+  { id: 3, title: '夏季浴衣', image: 'https://picsum.photos/seed/yukata/400/250' },
 ];
 
 export function Carousel() {

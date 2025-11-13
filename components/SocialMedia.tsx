@@ -9,25 +9,25 @@ export function SocialMedia() {
 
   return (
     <View style={styles.socialContainer}>
-      <Text style={styles.sectionTitle}>社交媒體</Text>
-      <View style={styles.socialButtonsRow}>
+      <Text style={styles.socialTitle}>SOCIAL MEDIA</Text>
+      <View style={styles.socialIcons}>
         <TouchableOpacity
           style={styles.socialButton}
           onPress={() => openLink('https://www.facebook.com')}
         >
-          <Text style={styles.socialButtonText}>Facebook</Text>
+          <Text style={styles.socialIcon}>👍</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.socialButton}
           onPress={() => openLink('https://www.instagram.com')}
         >
-          <Text style={styles.socialButtonText}>Instagram</Text>
+          <Text style={styles.socialIcon}>📷</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.socialButton}
           onPress={() => openLink('https://line.me')}
         >
-          <Text style={styles.socialButtonText}>LINE</Text>
+          <Text style={styles.socialIcon}>💬</Text>
         </TouchableOpacity>
       </View>
     </View>

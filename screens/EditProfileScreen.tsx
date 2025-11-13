@@ -1,5 +1,7 @@
+import { useAuth } from '@/contexts/AuthContext';
+import { updateUserProfile } from '@/services/api';
 import { useRouter } from 'expo-router';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     Alert,
     KeyboardAvoidingView,
@@ -15,20 +17,47 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 export function EditProfileScreen() {
   const router = useRouter();
+  const { user, updateUser } = useAuth();
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
-    fullName: '王小明',
-    email: 'wang.xiaoming@example.com',
-    phone: '0912-345-678',
-    birthday: '1990-01-01',
-    address: '台北市信義區',
+    fullName: '',
+    email: '',
+    phone: '',
+    birthday: '',
+    address: '',
   });
 
-  const handleSave = () => {
-    // TODO: 實作真實儲存功能
-    console.log('儲存資料:', formData);
-    Alert.alert('成功', '個人資料已更新', [
-      { text: '確定', onPress: () => router.back() }
-    ]);
+  // 載入使用者資料
+  useEffect(() => {
+    if (user) {
+      setFormData({
+        fullName: user.fullName || '',
+        email: user.email || '',
+        phone: user.phone || '',
+        birthday: user.birthday || '',
+        address: user.address || '',
+      });
+    }
+  }, [user]);
+
+  const handleSave = async () => {
+    setLoading(true);
+    const result = await updateUserProfile({
+      fullName: formData.fullName,
+      phone: formData.phone,
+      birthday: formData.birthday,
+      address: formData.address,
+    });
+    setLoading(false);
+
+    if (result.success && result.data?.user) {
+      await updateUser(result.data.user);
+      Alert.alert('成功', '個人資料已更新', [
+        { text: '確定', onPress: () => router.back() }
+      ]);
+    } else {
+      Alert.alert('錯誤', result.error || '更新失敗');
+    }
   };
 
   const updateFormData = (field: string, value: string) => {
@@ -49,8 +78,16 @@ export function EditProfileScreen() {
             <Text style={styles.backButtonText}>← 返回</Text>
           </TouchableOpacity>
           <Text style={styles.headerTitle}>編輯個人資料</Text>
-          <TouchableOpacity style={styles.saveButton} onPress={handleSave}>
-            <Text style={styles.saveButtonText}>儲存</Text>
+          <TouchableOpacity 
+            style={styles.saveButton} 
+            onPress={handleSave}
+            disabled={loading}
+          >
+            {loading ? (
+              <Text style={styles.saveButtonText}>...</Text>
+            ) : (
+              <Text style={styles.saveButtonText}>儲存</Text>
+            )}
           </TouchableOpacity>
         </View>
 
