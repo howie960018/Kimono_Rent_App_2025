@@ -1,35 +1,72 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
+import { BookingScreen } from '@/screens/BookingScreen';
+import { HomeScreen } from '@/screens/HomeScreen';
+import { MapScreen } from '@/screens/MapScreen';
+import { ProfileScreen } from '@/screens/ProfileScreen';
+import { PromoScreen } from '@/screens/PromoScreen';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import * as React from 'react';
+import { Text } from 'react-native';
 
-import { HapticTab } from '@/components/haptic-tab';
-import { IconSymbol } from '@/components/ui/icon-symbol';
-import { Colors } from '@/constants/theme';
-import { useColorScheme } from '@/hooks/use-color-scheme';
+const Tab = createBottomTabNavigator();
 
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
+export default function TabNavigator() {
   return (
-    <Tabs
+    <Tab.Navigator
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+        tabBarActiveTintColor: '#A0522D',
         headerShown: false,
-        tabBarButton: HapticTab,
-      }}>
-      <Tabs.Screen
-        name="index"
+      }}
+    >
+      <Tab.Screen 
+        name="目錄" 
+        component={HomeScreen} 
         options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+          tabBarLabel: '目錄',
+          tabBarIcon: ({ color, size }) => (
+            <Text style={{ fontSize: size, color }}>🏠</Text>
+          ),
         }}
       />
-      <Tabs.Screen
-        name="explore"
+      <Tab.Screen 
+        name="地圖" 
+        component={MapScreen}
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+          tabBarLabel: '地圖',
+          tabBarIcon: ({ color, size }) => (
+            <Text style={{ fontSize: size, color }}>📍</Text>
+          ),
         }}
       />
-    </Tabs>
+      <Tab.Screen 
+        name="預約" 
+        component={BookingScreen} 
+        options={{
+          tabBarLabel: '預約',
+          tabBarIcon: ({ color, size }) => (
+            <Text style={{ fontSize: size, color }}>📅</Text>
+          ),
+        }}
+      />
+      <Tab.Screen 
+        name="優惠" 
+        component={PromoScreen} 
+        options={{
+          tabBarLabel: '優惠',
+          tabBarIcon: ({ color, size }) => (
+            <Text style={{ fontSize: size, color }}>🎟️</Text>
+          ),
+        }}
+      />
+      <Tab.Screen 
+        name="我的" 
+        component={ProfileScreen} 
+        options={{
+          tabBarLabel: '我的',
+          tabBarIcon: ({ color, size }) => (
+            <Text style={{ fontSize: size, color }}>👤</Text>
+          ),
+        }}
+      />
+    </Tab.Navigator>
   );
 }
