@@ -470,6 +470,34 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingTop: 40,
   },
+  drawerLoginButton: {
+    flex: 1,
+    backgroundColor: '#000',
+    paddingVertical: 12,
+    paddingHorizontal: 24,
+    borderRadius: 8,
+    marginRight: 8,
+    alignItems: 'center',
+  },
+  drawerLoginButtonText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: '600',
+  },
+  drawerRegisterButton: {
+    flex: 1,
+    backgroundColor: '#D2B48C',
+    paddingVertical: 12,
+    paddingHorizontal: 24,
+    borderRadius: 8,
+    marginLeft: 8,
+    alignItems: 'center',
+  },
+  drawerRegisterButtonText: {
+    color: '#000',
+    fontSize: 16,
+    fontWeight: '600',
+  },
   drawerAvatar: {
     width: 60,
     height: 60,
@@ -550,4 +578,528 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     textTransform: 'uppercase',
   },
+  // CatalogScreen 樣式
+  catalogContainer: {
+    flex: 1,
+    backgroundColor: '#FFFFFF',
+  },
+  catalogHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+    borderBottomWidth: 1,
+    borderBottomColor: '#E0E0E0',
+    backgroundColor: '#FFFFFF',
+  },
+  catalogHeaderTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#333333',
+  },
+  backButton: {
+    padding: 8,
+  },
+  backButtonText: {
+    fontSize: 24,
+    color: '#333333',
+  },
+  // Tab 切換樣式
+  tabContainer: {
+    flexDirection: 'row',
+    backgroundColor: '#D2B48C',
+    paddingHorizontal: 8,
+    paddingVertical: 8,
+  },
+  tabButton: {
+    flex: 1,
+    paddingVertical: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 8,
+  },
+  tabButtonActive: {
+    backgroundColor: '#FFFFFF',
+  },
+  tabText: {
+    fontSize: 14,
+    color: '#333333',
+    fontWeight: '500',
+  },
+  tabTextActive: {
+    color: '#8B4513',
+    fontWeight: 'bold',
+  },
+  // 內容區樣式
+  catalogContent: {
+    paddingBottom: 20,
+  },
+  catalogBanner: {
+    width: '100%',
+    height: 200,
+    marginBottom: 16,
+  },
+  catalogBannerImage: {
+    width: '100%',
+    height: '100%',
+    resizeMode: 'cover',
+  },
+  // SectionList 樣式
+  sectionHeader: {
+    backgroundColor: '#333333',
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+    marginTop: 8,
+  },
+  sectionHeaderText: {
+    color: '#FFFFFF',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  // 兩欄網格卡片樣式
+  kimonoRow: {
+    flexDirection: 'row',
+    paddingHorizontal: 8,
+    gap: 12,
+    marginTop: 12,
+  },
+  kimonoCard: {
+    flex: 1,
+    backgroundColor: '#FFFFFF',
+    borderRadius: 8,
+    overflow: 'hidden',
+  },
+  kimonoImageContainer: {
+    position: 'relative',
+  },
+  kimonoImage: {
+    width: '100%',
+    height: 200,
+    resizeMode: 'cover',
+    borderTopLeftRadius: 8,
+    borderTopRightRadius: 8,
+  },
+  favoriteButton: {
+    position: 'absolute',
+    top: 8,
+    right: 8,
+    backgroundColor: 'rgba(255, 255, 255, 0.9)',
+    borderRadius: 20,
+    width: 36,
+    height: 36,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  favoriteIcon: {
+    fontSize: 20,
+    color: '#D2B48C',
+  },
+  kimonoInfo: {
+    padding: 12,
+  },
+  kimonoName: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: '#333333',
+    marginBottom: 4,
+  },
+  kimonoPrice: {
+    fontSize: 14,
+    color: '#8B4513',
+    fontWeight: '600',
+  },
+  // 三欄網格樣式
+  threeColumnGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    paddingHorizontal: 8,
+    gap: 8,
+  },
+  threeColumnCard: {
+    width: '31.5%',
+    backgroundColor: '#FFFFFF',
+    borderRadius: 8,
+    overflow: 'hidden',
+    marginTop: 8,
+  },
+  kimonoImageSmall: {
+    width: '100%',
+    height: 120,
+    resizeMode: 'cover',
+  },
+  favoriteButtonSmall: {
+    position: 'absolute',
+    top: 4,
+    right: 4,
+    backgroundColor: 'rgba(255, 255, 255, 0.9)',
+    borderRadius: 15,
+    width: 28,
+    height: 28,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  favoriteIconSmall: {
+    fontSize: 16,
+    color: '#D2B48C',
+  },
+  kimonoInfoSmall: {
+    padding: 8,
+  },
+  kimonoNameSmall: {
+    fontSize: 12,
+    fontWeight: 'bold',
+    color: '#333333',
+    marginBottom: 2,
+  },
+  kimononPriceSmall: {
+    fontSize: 11,
+    color: '#8B4513',
+    fontWeight: '600',
+  },
+  // 收藏頁面樣式
+  emptyFavorites: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 80,
+  },
+  emptyFavoritesIcon: {
+    fontSize: 64,
+    color: '#CCCCCC',
+    marginBottom: 16,
+  },
+  emptyFavoritesText: {
+    fontSize: 16,
+    color: '#999999',
+  },
+  favoriteCard: {
+    flexDirection: 'row',
+    backgroundColor: '#FFFFFF',
+    marginHorizontal: 16,
+    marginTop: 12,
+    borderRadius: 8,
+    overflow: 'hidden',
+    borderWidth: 1,
+    borderColor: '#E0E0E0',
+  },
+  favoriteImage: {
+    width: 120,
+    height: 120,
+    resizeMode: 'cover',
+  },
+  favoriteInfo: {
+    flex: 1,
+    padding: 12,
+    justifyContent: 'space-between',
+  },
+  favoriteName: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#333333',
+    marginBottom: 4,
+  },
+  favoritePrice: {
+    fontSize: 16,
+    color: '#8B4513',
+    fontWeight: '600',
+    marginBottom: 8,
+  },
+  removeFavoriteButton: {
+    alignSelf: 'flex-start',
+    paddingVertical: 6,
+    paddingHorizontal: 12,
+    backgroundColor: '#F0F0F0',
+    borderRadius: 4,
+  },
+  removeFavoriteText: {
+    fontSize: 13,
+    color: '#666666',
+  },
+  removeButton: {
+    marginTop: 8,
+    paddingVertical: 8,
+    backgroundColor: '#F0F0F0',
+    borderRadius: 4,
+    alignItems: 'center',
+  },
+  removeButtonText: {
+    fontSize: 13,
+    color: '#666666',
+  },
+  // RecordListScreen 樣式
+  recordContainer: {
+    flex: 1,
+    backgroundColor: '#FFFFFF',
+  },
+  recordHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+    borderBottomWidth: 1,
+    borderBottomColor: '#E0E0E0',
+    backgroundColor: '#FFFFFF',
+  },
+  recordHeaderTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#333333',
+  },
+  recordList: {
+    padding: 16,
+  },
+  recordCard: {
+    flexDirection: 'row',
+    backgroundColor: '#FFFFFF',
+    borderRadius: 8,
+    marginBottom: 16,
+    borderWidth: 1,
+    borderColor: '#E0E0E0',
+    overflow: 'hidden',
+  },
+  recordThumbnail: {
+    width: 80,
+    height: 80,
+    resizeMode: 'cover',
+  },
+  recordCardInfo: {
+    flex: 1,
+    padding: 12,
+    justifyContent: 'space-between',
+  },
+  recordDate: {
+    fontSize: 12,
+    color: '#999999',
+    marginBottom: 4,
+  },
+  recordTitle: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#333333',
+    marginBottom: 4,
+  },
+  recordStars: {
+    flexDirection: 'row',
+    gap: 2,
+  },
+  recordStar: {
+    fontSize: 16,
+    color: '#FFD700',
+  },
+  recordFabButton: {
+    position: 'absolute',
+    right: 20,
+    bottom: 20,
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    backgroundColor: '#D2B48C',
+    alignItems: 'center',
+    justifyContent: 'center',
+    elevation: 5,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+  },
+  recordFabIcon: {
+    fontSize: 32,
+    color: '#FFFFFF',
+    fontWeight: 'bold',
+  },
+  emptyRecords: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 80,
+  },
+  emptyRecordsIcon: {
+    fontSize: 64,
+    marginBottom: 16,
+  },
+  emptyRecordsText: {
+    fontSize: 16,
+    color: '#999999',
+  },
+  // RecordFormScreen 樣式
+  recordCloseButton: {
+    fontSize: 24,
+    color: '#333333',
+    paddingHorizontal: 16,
+  },
+  recordFormContainer: {
+    flex: 1,
+    padding: 16,
+  },
+  formGroup: {
+    marginBottom: 20,
+  },
+  formLabel: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: '#333333',
+    marginBottom: 8,
+  },
+  requiredStar: {
+    color: '#FF0000',
+  },
+  formInput: {
+    borderWidth: 1,
+    borderColor: '#E0E0E0',
+    borderRadius: 8,
+    padding: 12,
+    backgroundColor: '#FFFFFF',
+  },
+  formPlaceholder: {
+    color: '#999999',
+  },
+  formTextArea: {
+    borderWidth: 1,
+    borderColor: '#E0E0E0',
+    borderRadius: 8,
+    padding: 12,
+    backgroundColor: '#FFFFFF',
+    minHeight: 100,
+    textAlignVertical: 'top',
+  },
+  ratingContainer: {
+    flexDirection: 'row',
+    gap: 8,
+  },
+  ratingStar: {
+    fontSize: 32,
+    color: '#FFD700',
+  },
+  recordFormImage: {
+    width: '100%',
+    height: 200,
+    borderRadius: 8,
+    resizeMode: 'cover',
+  },
+  recordSubmitButton: {
+    backgroundColor: '#D2B48C',
+    padding: 16,
+    borderRadius: 8,
+    alignItems: 'center',
+    marginTop: 20,
+    marginBottom: 40,
+  },
+  recordSubmitButtonText: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#FFFFFF',
+  },
+  // Picker Modal 樣式
+  pickerModalOverlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    justifyContent: 'flex-end',
+  },
+  pickerModalContainer: {
+    backgroundColor: '#FFFFFF',
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    maxHeight: '60%',
+  },
+  pickerModalHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: 16,
+    borderBottomWidth: 1,
+    borderBottomColor: '#E0E0E0',
+  },
+  pickerModalTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#333333',
+  },
+  pickerModalClose: {
+    fontSize: 24,
+    color: '#666666',
+  },
+  pickerOption: {
+    padding: 16,
+    borderBottomWidth: 1,
+    borderBottomColor: '#F0F0F0',
+  },
+  pickerOptionText: {
+    fontSize: 16,
+    color: '#333333',
+  },
+  // RecordDetailScreen 樣式
+  recordDetailContainer: {
+    flex: 1,
+  },
+  recordDetailImage: {
+    width: '100%',
+    height: 300,
+    resizeMode: 'cover',
+  },
+  recordDetailContent: {
+    padding: 20,
+  },
+  recordDetailRow: {
+    marginBottom: 20,
+  },
+  recordDetailLabel: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: '#666666',
+    marginBottom: 8,
+  },
+  recordDetailValue: {
+    fontSize: 16,
+    color: '#333333',
+  },
+  recordDetailNotes: {
+    fontSize: 16,
+    color: '#333333',
+    lineHeight: 24,
+  },
+  recordDetailStar: {
+    fontSize: 24,
+    color: '#FFD700',
+  },
+  recordDetailActions: {
+    flexDirection: 'row',
+    padding: 16,
+    gap: 12,
+    borderTopWidth: 1,
+    borderTopColor: '#E0E0E0',
+  },
+  recordEditButton: {
+    flex: 1,
+    backgroundColor: '#333333',
+    padding: 16,
+    borderRadius: 8,
+    alignItems: 'center',
+  },
+  recordEditButtonText: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#FFFFFF',
+  },
+  recordDeleteButton: {
+    flex: 1,
+    backgroundColor: '#D2B48C',
+    padding: 16,
+    borderRadius: 8,
+    alignItems: 'center',
+  },
+  recordDeleteButtonText: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#FFFFFF',
+  },
+  // Loading Container
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });
+
+

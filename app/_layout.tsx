@@ -23,7 +23,9 @@ export default function RootLayout() {
           <Stack.Screen name="register" options={{ headerShown: false }} />
           <Stack.Screen name="edit-profile" options={{ headerShown: false }} />
           <Stack.Screen name="my-bookings" options={{ headerShown: false }} />
+          <Stack.Screen name="my-records" options={{ headerShown: false }} />
           <Stack.Screen name="booking" options={{ headerShown: false }} />
+          <Stack.Screen name="catalog" options={{ headerShown: false }} />
         </Stack>
         <StatusBar style="auto" />
       </ThemeProvider>

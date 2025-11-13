@@ -17,9 +17,6 @@ export function Header({ onMenuPress, title = '川平屋' }: HeaderProps) {
           <Text style={styles.logoText}>{title}</Text>
         </View>
         <View style={styles.headerIcons}>
-          <TouchableOpacity>
-            <Text style={styles.iconText}>👤</Text>
-          </TouchableOpacity>
           <TouchableOpacity onPress={onMenuPress}>
             <Text style={styles.iconText}>☰</Text>
           </TouchableOpacity>
