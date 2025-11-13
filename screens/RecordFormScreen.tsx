@@ -1,10 +1,11 @@
 import { styles } from '@/styles/styles';
-import { MENU_ITEMS, RECORD_TYPES, Record } from '@/types/record';
-import { saveRecord, updateRecord } from '@/utils/recordStorage';
+import { MENU_ITEMS, RECORD_TYPES, Record, mockRecords } from '@/types/record';
+import { getRecords, saveRecord, updateRecord } from '@/utils/recordStorage';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { router, useLocalSearchParams } from 'expo-router';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
+    ActivityIndicator,
     Alert,
     Image,
     Modal,
@@ -13,7 +14,7 @@ import {
     Text,
     TextInput,
     TouchableOpacity,
-    View,
+    View
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -21,6 +22,7 @@ export function RecordFormScreen() {
   const params = useLocalSearchParams();
   const editMode = !!params.id;
 
+  const [loading, setLoading] = useState(editMode);
   const [date, setDate] = useState(new Date());
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [type, setType] = useState('');
@@ -29,7 +31,42 @@ export function RecordFormScreen() {
   const [showMenuPicker, setShowMenuPicker] = useState(false);
   const [rating, setRating] = useState(0);
   const [notes, setNotes] = useState('');
-  const [imageUrl] = useState('https://via.placeholder.com/400x250?text=Upload+Image');
+  const [imageUrl, setImageUrl] = useState('https://via.placeholder.com/400x250?text=Upload+Image');
+
+  // 載入編輯資料
+  useEffect(() => {
+    if (editMode && params.id) {
+      loadRecord(params.id as string);
+    }
+  }, [editMode, params.id]);
+
+  const loadRecord = async (recordId: string) => {
+    try {
+      const records = await getRecords();
+      const allRecords = records.length > 0 ? records : mockRecords;
+      const record = allRecords.find((r) => r.id === recordId);
+      
+      if (record) {
+        // 解析日期
+        const dateMatch = record.date.match(/(\d+)年(\d+)月(\d+)日/);
+        if (dateMatch) {
+          const [, year, month, day] = dateMatch;
+          setDate(new Date(parseInt(year), parseInt(month) - 1, parseInt(day)));
+        }
+        
+        setType(record.type);
+        setMenuItem(record.menu_item);
+        setRating(record.rating);
+        setNotes(record.notes);
+        setImageUrl(record.image_url);
+      }
+    } catch (error) {
+      console.error('載入記錄失敗:', error);
+      Alert.alert('錯誤', '載入記錄失敗');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const formatDate = (date: Date) => {
     return `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`;
@@ -118,6 +155,23 @@ export function RecordFormScreen() {
       </View>
     </Modal>
   );
+
+  if (loading) {
+    return (
+      <SafeAreaView style={styles.recordContainer}>
+        <View style={styles.recordHeader}>
+          <View style={{ width: 40 }} />
+          <Text style={styles.recordHeaderTitle}>載入中...</Text>
+          <TouchableOpacity onPress={() => router.back()}>
+            <Text style={styles.recordCloseButton}>✕</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.loadingContainer}>
+          <ActivityIndicator size="large" color="#D2B48C" />
+        </View>
+      </SafeAreaView>
+    );
+  }
 
   return (
     <SafeAreaView style={styles.recordContainer}>
